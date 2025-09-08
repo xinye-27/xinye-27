@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>大闸蟹模板选择 - 500款</title>
     <style>
-        /* 基础样式重置 */
+        /* 
+         * 基础样式重置 
+         */
         * {
             margin: 0;
             padding: 0;
@@ -13,109 +15,100 @@
             -webkit-tap-highlight-color: transparent;
         }
         
+        /* 
+         * 页面整体样式
+         */
         body {
             font-family: 'Microsoft YaHei', sans-serif;
             background: linear-gradient(135deg, #f9f5e9 0%, #e8d5b7 100%);
             color: #333;
             line-height: 1.6;
             min-height: 100vh;
-            padding: 5px;
+            padding: 8px;
             -webkit-text-size-adjust: 100%;
-            overflow-x: hidden;
         }
         
-        /* 主容器 */
+        /* 
+         * 主容器
+         */
         .container {
-            width: 100%;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 10px;
+            padding: 12px;
             background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
-        /* 标题区域 */
+        /* 
+         * 标题区域 - 进一步缩小
+         */
         header {
             text-align: center;
-            margin-bottom: 15px;
-            padding: 15px 10px;
+            margin-bottom: 12px;
+            padding: 8px 6px;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
         }
         
+        /* 
+         * 主标题样式
+         */
         h1 {
             color: #ff0000;
-            font-size: 1.8rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            margin-bottom: 8px;
-            letter-spacing: 1px;
+            font-size: 1.4rem;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2px;
         }
         
+        /* 
+         * 副标题样式
+         */
         .subtitle {
-            font-size: 1rem;
+            font-size: 0.8rem;
             color: #666;
-            margin-top: 5px;
         }
         
-        /* 控制面板 */
-        .control-panel {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .control-btn {
-            padding: 8px 15px;
-            background: #ff0000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            min-width: 100px;
-        }
-        
-        .control-btn:active {
-            background: #cc0000;
-            transform: translateY(1px);
-        }
-        
-        /* 图片网格布局 - 4列 */
+        /* 
+         * 图片网格布局 - 4列
+         */
         .gallery {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             width: 100%;
         }
         
-        /* 图片卡片样式 */
+        /* 
+         * 图片卡片样式
+         */
         .card {
             background: white;
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-direction: column;
         }
         
-        /* 图片容器 */
+        /* 
+         * 图片容器 - 进一步增加高度
+         */
         .img-container {
             width: 100%;
             height: 0;
-            padding-bottom: 75%; /* 4:3 比例 */
+            padding-bottom: 110%; /* 进一步增加了图片区域的比例 */
             overflow: hidden;
             position: relative;
             background: #f5f5f5;
-            border-bottom: 2px solid #ff0000;
+            border-bottom: 1px solid #ff0000;
         }
         
-        /* 图片样式 */
+        /* 
+         * 图片样式
+         */
         .card-img {
             position: absolute;
             top: 0;
@@ -123,214 +116,305 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.3s ease;
         }
         
-        /* 编号样式 */
+        /* 
+         * 图片悬停效果
+         */
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+        
+        /* 
+         * 编号样式 - 进一步减小
+         */
         .card-number {
             text-align: center;
-            padding: 8px 3px;
-            font-size: 0.9rem;
+            padding: 2px;
+            font-size: 0.65rem;
             font-weight: bold;
             color: #ff0000;
             background: rgba(255, 255, 255, 0.95);
-            min-height: 35px;
+            min-height: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
-        /* 页脚样式 */
-        footer {
-            text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-            color: #666;
-            font-size: 0.8rem;
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 8px;
+        /* 
+         * 分页控件样式
+         */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+            flex-wrap: wrap;
+            gap: 8px;
         }
         
-        /* 加载指示器 */
-        .loader {
-            display: none;
-            text-align: center;
-            padding: 20px;
-            font-size: 1rem;
-            color: #666;
+        .page-btn {
+            padding: 8px 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
         }
         
-        .loader.active {
-            display: block;
+        .page-btn:hover {
+            background: #ff0000;
+            color: white;
+            border-color: #ff0000;
         }
         
-        /* 重置状态消息 */
-        .reset-message {
+        .page-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .page-btn.active {
+            background: #ff0000;
+            color: white;
+            border-color: #ff0000;
+        }
+        
+        /* 
+         * 页面信息样式
+         */
+        .page-info {
             text-align: center;
-            padding: 10px;
+            margin: 8px 0;
             font-size: 0.9rem;
             color: #666;
-            display: none;
         }
         
-        .reset-message.active {
-            display: block;
+        /* 
+         * 页脚样式
+         */
+        footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.7rem;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 6px;
         }
         
-        /* 电脑端样式 */
+        /* 
+         * 电脑端样式
+         */
         @media screen and (min-width: 768px) {
-            body {
+            .container {
                 padding: 15px;
             }
             
-            .container {
-                max-width: 1400px;
-                padding: 20px;
-                border-radius: 12px;
-            }
-            
             header {
-                padding: 20px 15px;
-                margin-bottom: 25px;
+                padding: 10px 8px;
             }
             
             h1 {
-                font-size: 2.8rem;
+                font-size: 1.8rem;
             }
             
             .subtitle {
-                font-size: 1.3rem;
-            }
-            
-            .control-panel {
-                gap: 15px;
-                margin-bottom: 20px;
-            }
-            
-            .control-btn {
-                padding: 10px 20px;
-                font-size: 1rem;
-                min-width: 120px;
+                font-size: 0.9rem;
             }
             
             .gallery {
-                gap: 15px;
-            }
-            
-            .card {
-                border-radius: 10px;
+                gap: 10px;
             }
             
             .card-number {
-                padding: 10px 5px;
-                font-size: 1.1rem;
-                min-height: 45px;
+                font-size: 0.75rem;
+                min-height: 22px;
+            }
+            
+            .page-btn {
+                padding: 10px 18px;
+                font-size: 1rem;
             }
             
             footer {
-                padding: 20px;
-                font-size: 0.9rem;
-            }
-        }
-        
-        /* 超大屏幕样式 */
-        @media screen and (min-width: 1200px) {
-            h1 {
-                font-size: 3.5rem;
-            }
-            
-            .subtitle {
-                font-size: 1.5rem;
-            }
-            
-            .gallery {
-                gap: 20px;
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 标题区域 -->
+        <!-- 标题区域 - 进一步缩小 -->
         <header>
             <h1>大闸蟹模板选择</h1>
-            <p class="subtitle">精选模板 - 编号从0001开始</p>
+            <p class="subtitle">500款精选模板 - 共10页</p>
         </header>
-        
-        <!-- 控制面板 -->
-        <div class="control-panel">
-            <button class="control-btn" onclick="loadImages(20)">加载20张</button>
-            <button class="control-btn" onclick="loadImages(50)">加载50张</button>
-            <button class="control-btn" onclick="resetGallery()">重置页面</button>
-        </div>
-        
-        <!-- 重置状态消息 -->
-        <div class="reset-message" id="resetMessage">
-            正在重置页面，请稍候...
-        </div>
-        
-        <!-- 加载指示器 -->
-        <div class="loader" id="loader">
-            <p>正在加载图片，请稍候...</p>
-        </div>
         
         <!-- 图片展示区域 -->
         <div class="gallery" id="gallery">
             <!-- 图片将通过JavaScript动态生成 -->
         </div>
         
+        <!-- 分页信息 -->
+        <div class="page-info" id="pageInfo">
+            第1页，共10页
+        </div>
+        
+        <!-- 分页控件 -->
+        <div class="pagination" id="pagination">
+            <!-- 分页按钮将通过JavaScript动态生成 -->
+        </div>
+        
         <!-- 页脚 -->
         <footer>
-            <p>© 2023 大闸蟹模板选择 | 编号从0001开始</p>
-            <p>本地运行时，请将图片放在images文件夹中，并命名为crab-0001.jpg等</p>
+            <p>© 2023 大闸蟹模板选择 | 编号从0001到0500，共500款模板</p>
+            <p>
+                <!-- 
+                 * 图片文件说明：
+                 * 1. 在HTML文件同级目录下创建名为"images"的文件夹
+                 * 2. 将大闸蟹图片放入该文件夹中
+                 * 3. 图片命名格式为：crab-0001.jpg, crab-0002.jpg, ..., crab-0500.jpg
+                 * 4. 支持.jpg、.png、.gif等常见图片格式
+                 -->
+                图片文件位置：在项目文件夹中创建"images"文件夹，放入名为crab-0001.jpg到crab-0500.jpg的图片文件
+            </p>
         </footer>
     </div>
 
     <script>
+        // 配置项
+        const TOTAL_IMAGES = 500; // 总图片数量
+        const IMAGES_PER_PAGE = 50; // 每页显示的图片数量增加到50
+        const TOTAL_PAGES = Math.ceil(TOTAL_IMAGES / IMAGES_PER_PAGE); // 总页数
+        
         // 获取DOM元素
         const gallery = document.getElementById('gallery');
-        const loader = document.getElementById('loader');
-        const resetMessage = document.getElementById('resetMessage');
+        const pagination = document.getElementById('pagination');
+        const pageInfo = document.getElementById('pageInfo');
         
-        // 初始加载图片
-        function loadImages(count = 20) {
-            // 显示加载指示器
-            loader.classList.add('active');
+        // 当前页码
+        let currentPage = 1;
+        
+        // 初始化函数
+        function init() {
+            // 生成分页按钮
+            generatePagination();
+            
+            // 加载第一页图片
+            loadPage(1);
+        }
+        
+        // 生成分页按钮
+        function generatePagination() {
+            // 清空现有内容
+            pagination.innerHTML = '';
+            
+            // 添加上一页按钮
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'page-btn';
+            prevBtn.textContent = '上一页';
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    loadPage(currentPage - 1);
+                }
+            });
+            pagination.appendChild(prevBtn);
+            
+            // 添加数字页码按钮
+            const maxVisiblePages = 5; // 最多显示5个页码按钮
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(TOTAL_PAGES, startPage + maxVisiblePages - 1);
+            
+            // 调整起始页码
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            // 添加第一页和省略号（如果需要）
+            if (startPage > 1) {
+                const firstBtn = document.createElement('button');
+                firstBtn.className = 'page-btn';
+                firstBtn.textContent = '1';
+                firstBtn.addEventListener('click', () => {
+                    loadPage(1);
+                });
+                pagination.appendChild(firstBtn);
+                
+                if (startPage > 2) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.textContent = '...';
+                    ellipsis.style.padding = '0 5px';
+                    pagination.appendChild(ellipsis);
+                }
+            }
+            
+            // 添加页码按钮
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = 'page-btn';
+                if (i === currentPage) pageBtn.classList.add('active');
+                pageBtn.textContent = i;
+                pageBtn.addEventListener('click', () => {
+                    loadPage(i);
+                });
+                pagination.appendChild(pageBtn);
+            }
+            
+            // 添加最后一页和省略号（如果需要）
+            if (endPage < TOTAL_PAGES) {
+                if (endPage < TOTAL_PAGES - 1) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.textContent = '...';
+                    ellipsis.style.padding = '0 5px';
+                    pagination.appendChild(ellipsis);
+                }
+                
+                const lastBtn = document.createElement('button');
+                lastBtn.className = 'page-btn';
+                lastBtn.textContent = TOTAL_PAGES;
+                lastBtn.addEventListener('click', () => {
+                    loadPage(TOTAL_PAGES);
+                });
+                pagination.appendChild(lastBtn);
+            }
+            
+            // 添加下一页按钮
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'page-btn';
+            nextBtn.textContent = '下一页';
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < TOTAL_PAGES) {
+                    loadPage(currentPage + 1);
+                }
+            });
+            pagination.appendChild(nextBtn);
+        }
+        
+        // 加载指定页的图片
+        function loadPage(page) {
+            // 更新当前页码
+            currentPage = page;
             
             // 清空现有内容
             gallery.innerHTML = '';
             
-            // 使用setTimeout让浏览器有时间更新UI
-            setTimeout(() => {
-                for (let i = 1; i <= count; i++) {
-                    createImageCard(i);
-                }
-                
-                // 隐藏加载指示器
-                setTimeout(() => {
-                    loader.classList.remove('active');
-                }, 300);
-            }, 100);
-        }
-        
-        // 重置画廊
-        function resetGallery() {
-            // 显示重置消息
-            resetMessage.classList.add('active');
+            // 计算当前页的起始和结束图片编号
+            const startIndex = (page - 1) * IMAGES_PER_PAGE + 1;
+            const endIndex = Math.min(page * IMAGES_PER_PAGE, TOTAL_IMAGES);
             
-            // 清空画廊
-            gallery.innerHTML = '';
+            // 更新页码信息
+            pageInfo.textContent = `第${page}页，共${TOTAL_PAGES}页`;
             
-            // 使用setTimeout模拟重置过程
-            setTimeout(() => {
-                // 隐藏重置消息
-                resetMessage.classList.remove('active');
-                
-                // 重新加载初始图片
-                loadImages(20);
-                
-                // 滚动到顶部
-                window.scrollTo(0, 0);
-            }, 500);
+            // 生成当前页的图片
+            for (let i = startIndex; i <= endIndex; i++) {
+                createImageCard(i);
+            }
+            
+            // 重新生成分页按钮
+            generatePagination();
+            
+            // 滚动到顶部
+            window.scrollTo(0, 0);
         }
         
         // 创建单个图片卡片
@@ -370,10 +454,10 @@
                 placeholder.style.justifyContent = 'center';
                 placeholder.style.background = '#e0e0e0';
                 placeholder.style.color = '#999';
-                placeholder.style.fontSize = '0.7rem';
+                placeholder.style.fontSize = '0.6rem';
                 placeholder.style.textAlign = 'center';
-                placeholder.style.padding = '5px';
-                placeholder.innerHTML = `图片加载失败<br>crab-${numberString}.jpg`;
+                placeholder.style.padding = '3px';
+                placeholder.innerHTML = `图片 ${numberString}<br>等待添加`;
                 
                 // 添加占位符到容器
                 imgContainer.appendChild(placeholder);
@@ -396,9 +480,7 @@
         }
         
         // 页面加载完成后初始化
-        window.onload = function() {
-            loadImages(20);
-        };
+        window.onload = init;
     </script>
 </body>
 </html>
