@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>大闸蟹图片展示模板</title>
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* 标题样式 */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .title {
+            color: #e60000; /* 红色字体 */
+            font-size: 42px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        
+        /* 主容器 */
+        .main-container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        /* 图片容器布局 */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        /* 单个图片项样式 */
+        .image-item {
+            width: calc(33.33% - 17px); /* 一排3个，考虑间隙 */
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eee;
+        }
+        
+        .image-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+        }
+        
+        /* 图片容器 - 竖长方形，更高 */
+        .image-container {
+            width: 100%;
+            height: 480px; /* 增加高度到480px，形成竖长方形 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            background: #f9f9f9;
+            position: relative;
+            cursor: pointer; /* 表示可点击 */
+        }
+        
+        /* 图片样式 - 自适应容器 */
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* 保持比例，完整显示图片 */
+            border-radius: 6px;
+            transition: transform 0.3s ease;
+        }
+        
+        /* 待上传样式 */
+        .upload-placeholder {
+            color: #999;
+            font-size: 16px;
+            text-align: center;
+            padding: 20px;
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .upload-placeholder::before {
+            content: "+";
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #bbb;
+        }
+        
+        /* 序号样式 */
+        .image-index {
+            text-align: center;
+            padding: 12px 0;
+            color: #e60000; /* 红色字体 */
+            font-weight: bold;
+            border-top: 1px solid #eee;
+            font-size: 16px;
+            background: #fafafa;
+        }
+        
+        /* 分页控件样式 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .page-btn {
+            padding: 10px 20px;
+            background-color: #e60000;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            min-width: 100px;
+        }
+        
+        .page-btn:hover {
+            background-color: #ff0000;
+            box-shadow: 0 2px 8px rgba(230,0,0,0.3);
+        }
+        
+        .page-btn:disabled {
+            background-color: #ff9999;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        .page-info {
+            display: flex;
+            align-items: center;
+            margin: 0 20px;
+            color: #666;
+            font-size: 16px;
+            background: #f5f5f5;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        
+        /* 页脚样式 */
+        .footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            .image-item {
+                width: calc(50% - 12px);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .image-item {
+                width: 100%;
+            }
+            
+            .title {
+                font-size: 32px;
+            }
+            
+            .image-container {
+                height: 400px; /* 在手机上稍微降低高度 */
+            }
+        }
+        
+        /* 放大预览模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            animation: zoomIn 0.3s ease;
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.9); }
+            to { transform: scale(1); }
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: #e60000;
+        }
+        
+        /* 图片加载动画 */
+        .loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* 缩放提示 */
+        .zoom-hint {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            max-width: 1200px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 标题区域 -->
+    <div class="header">
+        <h1 class="title">大闸蟹模板</h1>
+        <p class="subtitle">优质大闸蟹图片展示与管理系统</p>
+    </div>
+    
+    <!-- 缩放提示 -->
+    <div class="zoom-hint">
+        提示：您可以使用 Ctrl+加号/减号 或双指缩放来调整页面大小，布局将保持不变
+    </div>
+    
+    <!-- 主内容区 -->
+    <div class="main-container">
+        <!-- 图片展示容器 -->
+        <div class="container" id="imageContainer">
+            <!-- 图片项将由JavaScript动态生成 -->
+        </div>
+        
+        <!-- 分页控件 -->
+        <div class="pagination">
+            <button class="page-btn" id="prevPage">上一页</button>
+            <div class="page-info">第 <span id="currentPage">1</span> 页 / 共 <span id="totalPages">10</span> 页</div>
+            <button class="page-btn" id="nextPage">下一页</button>
+        </div>
+    </div>
+    
+    <!-- 图片放大预览模态框 -->
+    <div id="imageModal" class="modal">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    
+    <!-- 页脚 -->
+    <div class="footer">
+        <p>大闸蟹图片展示系统 &copy; 2023 | 共500个图片容器</p>
+    </div>
+
+    <script>
+        // 配置常量
+        const IMAGES_PER_PAGE = 50; // 每页显示50张图片
+        const IMAGES_PER_ROW = 3;   // 每行3张图片
+        const TOTAL_IMAGES = 500;   // 总共500张图片
+        
+        // 计算总页数
+        const TOTAL_PAGES = Math.ceil(TOTAL_IMAGES / IMAGES_PER_PAGE);
+        
+        // 当前页码
+        let currentPage = 1;
+        
+        // 获取DOM元素
+        const imageContainer = document.getElementById('imageContainer');
+        const prevPageBtn = document.getElementById('prevPage');
+        const nextPageBtn = document.getElementById('nextPage');
+        const currentPageSpan = document.getElementById('currentPage');
+        const totalPagesSpan = document.getElementById('totalPages');
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+        
+        // 初始化总页数显示
+        totalPagesSpan.textContent = TOTAL_PAGES;
+        
+        // 生成图片项的函数
+        function generateImageItems(page) {
+            // 清空容器
+            imageContainer.innerHTML = '';
+            
+            // 计算当前页的起始和结束索引
+            const startIndex = (page - 1) * IMAGES_PER_PAGE + 1;
+            const endIndex = Math.min(startIndex + IMAGES_PER_PAGE - 1, TOTAL_IMAGES);
+            
+            // 生成当前页的图片项
+            for (let i = startIndex; i <= endIndex; i++) {
+                // 创建图片项容器
+                const item = document.createElement('div');
+                item.className = 'image-item';
+                
+                // 创建图片容器
+                const imgContainer = document.createElement('div');
+                imgContainer.className = 'image-container';
+                
+                // 创建图片元素
+                const img = document.createElement('img');
+                // 生成图片文件名，格式为0001.jpg、0002.jpg等
+                const fileName = i.toString().padStart(4, '0') + '.jpg';
+                // 设置图片路径（这里使用占位图，实际使用时替换为您的图片路径）
+                // 使用更高分辨率的占位图，确保在放大时清晰
+                img.src = `https://via.placeholder.com/600x800/ffcccc/333333?text=大闸蟹${i.toString().padStart(4, '0')}`;
+                img.alt = `大闸蟹图片 ${fileName}`;
+                img.loading = "lazy"; // 懒加载
+                
+                // 添加加载样式
+                img.classList.add('loading');
+                
+                // 图片加载完成时移除加载样式
+                img.onload = function() {
+                    img.classList.remove('loading');
+                };
+                
+                // 图片加载失败时显示上传占位符
+                img.onerror = function() {
+                    img.classList.remove('loading');
+                    // 创建占位符
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'upload-placeholder';
+                    placeholder.textContent = '待上传新模板';
+                    
+                    // 移除图片，添加占位符
+                    imgContainer.innerHTML = '';
+                    imgContainer.appendChild(placeholder);
+                };
+                
+                // 添加点击事件，用于放大图片
+                imgContainer.onclick = function() {
+                    if (img.src && !img.classList.contains('loading')) {
+                        modal.style.display = 'flex';
+                        modalImage.src = img.src;
+                        modalImage.alt = img.alt;
+                        document.body.style.overflow = 'hidden'; // 防止背景滚动
+                    }
+                };
+                
+                // 创建序号元素
+                const index = document.createElement('div');
+                index.className = 'image-index';
+                index.textContent = i.toString().padStart(4, '0'); // 显示序号，不带.jpg
+                
+                // 组装元素
+                imgContainer.appendChild(img);
+                item.appendChild(imgContainer);
+                item.appendChild(index);
+                
+                // 添加到容器
+                imageContainer.appendChild(item);
+            }
+            
+            // 更新页码显示
+            currentPageSpan.textContent = page;
+            
+            // 更新按钮状态
+            prevPageBtn.disabled = page === 1;
+            nextPageBtn.disabled = page === TOTAL_PAGES;
+        }
+        
+        // 关闭模态框
+        function closeModalFunc() {
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // 恢复背景滚动
+        }
+        
+        closeModal.onclick = closeModalFunc;
+        
+        // 点击模态框背景也关闭
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                closeModalFunc();
+            }
+        };
+        
+        // 键盘ESC键关闭模态框
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.style.display === 'flex') {
+                closeModalFunc();
+            }
+        });
+        
+        // 初始化页面
+        generateImageItems(currentPage);
+        
+        // 上一页按钮点击事件
+        prevPageBtn.addEventListener('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
+                generateImageItems(currentPage);
+                // 滚动到顶部
+                window.scrollTo(0, 0);
+            }
+        });
+        
+        // 下一页按钮点击事件
+        nextPageBtn.addEventListener('click', function() {
+            if (currentPage < TOTAL_PAGES) {
+                currentPage++;
+                generateImageItems(currentPage);
+                // 滚动到顶部
+                window.scrollTo(0, 0);
+            }
+        });
+        
+        // 处理移动设备上的触摸事件，防止意外缩放
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>
