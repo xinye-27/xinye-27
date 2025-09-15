@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>大闸蟹图片展示模板</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大闸蟹提货卡模板</title>
     <style>
         /* 基础样式重置 */
         * {
@@ -13,114 +13,107 @@
             font-family: 'Microsoft YaHei', sans-serif;
         }
         
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
-        }
-        
         body {
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
             padding: 20px;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            width: 100%;
+            overflow-x: auto;
         }
         
         /* 标题样式 */
         .header {
             text-align: center;
             margin-bottom: 40px;
-            padding: 20px;
+            padding: 25px;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 1200px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .title {
-            color: #e60000; /* 红色字体 */
-            font-size: 42px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
+            color: #e60000;
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
         }
         
         .subtitle {
             color: #666;
             margin-top: 10px;
-            font-size: 18px;
+            font-size: 22px;
         }
         
         /* 主容器 */
         .main-container {
-            width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
             margin-bottom: 30px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        /* 图片容器布局 */
+        /* 图片容器布局 - 固定3列 */
         .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            gap: 25px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
             margin-bottom: 40px;
         }
         
         /* 单个图片项样式 */
         .image-item {
-            width: calc(33.33% - 17px); /* 一排3个，考虑间隙 */
             background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             overflow: hidden;
-            margin-bottom: 20px;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid #eee;
         }
         
         .image-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+            transform: translateY(-7px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
         
-        /* 图片容器 - 竖长方形，更高 */
+        /* 图片容器 - 竖长方形 */
         .image-container {
             width: 100%;
-            height: 480px; /* 增加高度到480px，形成竖长方形 */
+            height: 480px;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 15px;
+            padding: 20px;
             background: #f9f9f9;
             position: relative;
-            cursor: pointer; /* 表示可点击 */
+            cursor: pointer;
         }
         
-        /* 图片样式 - 自适应容器 */
+        /* 图片样式 */
         .image-container img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* 保持比例，完整显示图片 */
-            border-radius: 6px;
+            object-fit: contain;
+            border-radius: 8px;
             transition: transform 0.3s ease;
         }
         
         /* 待上传样式 */
         .upload-placeholder {
             color: #999;
-            font-size: 16px;
+            font-size: 18px;
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             background: #f0f0f0;
             border: 2px dashed #ccc;
-            border-radius: 8px;
+            border-radius: 10px;
             width: 100%;
             height: 100%;
             display: flex;
@@ -131,19 +124,19 @@
         
         .upload-placeholder::before {
             content: "+";
-            font-size: 40px;
-            margin-bottom: 10px;
+            font-size: 50px;
+            margin-bottom: 15px;
             color: #bbb;
         }
         
         /* 序号样式 */
         .image-index {
             text-align: center;
-            padding: 12px 0;
-            color: #e60000; /* 红色字体 */
+            padding: 15px 0;
+            color: #e60000;
             font-weight: bold;
             border-top: 1px solid #eee;
-            font-size: 16px;
+            font-size: 18px;
             background: #fafafa;
         }
         
@@ -151,75 +144,59 @@
         .pagination {
             display: flex;
             justify-content: center;
-            margin-top: 30px;
-            gap: 15px;
+            margin-top: 40px;
+            gap: 20px;
             align-items: center;
         }
         
         .page-btn {
-            padding: 10px 20px;
+            padding: 12px 25px;
             background-color: #e60000;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 16px;
-            min-width: 100px;
+            transition: all 0.3s;
+            font-size: 18px;
+            min-width: 120px;
+            box-shadow: 0 4px 8px rgba(230,0,0,0.2);
         }
         
         .page-btn:hover {
             background-color: #ff0000;
-            box-shadow: 0 2px 8px rgba(230,0,0,0.3);
+            box-shadow: 0 6px 12px rgba(230,0,0,0.3);
+            transform: translateY(-2px);
         }
         
         .page-btn:disabled {
             background-color: #ff9999;
             cursor: not-allowed;
             box-shadow: none;
+            transform: none;
         }
         
         .page-info {
             display: flex;
             align-items: center;
-            margin: 0 20px;
+            margin: 0 25px;
             color: #666;
-            font-size: 16px;
+            font-size: 18px;
             background: #f5f5f5;
-            padding: 8px 20px;
-            border-radius: 20px;
+            padding: 10px 25px;
+            border-radius: 25px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
         
         /* 页脚样式 */
         .footer {
             text-align: center;
-            margin-top: auto;
-            padding: 20px;
+            margin-top: 30px;
+            padding: 25px;
             color: #666;
-            font-size: 14px;
-            width: 100%;
-            max-width: 1200px;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 900px) {
-            .image-item {
-                width: calc(50% - 12px);
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .image-item {
-                width: 100%;
-            }
-            
-            .title {
-                font-size: 32px;
-            }
-            
-            .image-container {
-                height: 400px; /* 在手机上稍微降低高度 */
-            }
+            font-size: 16px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* 放大预览模态框 */
@@ -231,7 +208,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             overflow: hidden;
             justify-content: center;
             align-items: center;
@@ -248,6 +225,8 @@
             max-height: 90%;
             object-fit: contain;
             animation: zoomIn 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
         @keyframes zoomIn {
@@ -257,13 +236,14 @@
         
         .close-btn {
             position: absolute;
-            top: 20px;
-            right: 30px;
+            top: 25px;
+            right: 35px;
             color: white;
-            font-size: 40px;
+            font-size: 50px;
             font-weight: bold;
             cursor: pointer;
             transition: color 0.3s;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
         .close-btn:hover {
@@ -275,44 +255,67 @@
             background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
+            border-radius: 8px;
         }
         
         @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            from { background-position: 200% 0; }
+            to { background-position: -200% 0; }
         }
         
         /* 缩放提示 */
         .zoom-hint {
             text-align: center;
             color: #666;
-            font-size: 14px;
-            margin-top: 10px;
-            padding: 10px;
+            font-size: 16px;
+            margin: 15px 0 30px;
+            padding: 15px;
             background: #f9f9f9;
-            border-radius: 6px;
-            max-width: 1200px;
+            border-radius: 8px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        
+        /* 强制横向滚动的小屏幕设备 */
+        .horizontal-scroll-wrapper {
             width: 100%;
+            overflow-x: auto;
+        }
+        
+        /* 小屏幕设备上的网格容器 */
+        @media (max-width: 1400px) {
+            .container {
+                width: 1320px; /* 固定宽度确保3列布局 */
+            }
+            
+            .main-container {
+                overflow-x: auto;
+            }
         }
     </style>
 </head>
 <body>
     <!-- 标题区域 -->
     <div class="header">
-        <h1 class="title">大闸蟹模板</h1>
-        <p class="subtitle">优质大闸蟹图片展示与管理系统</p>
+        <h1 class="title">大闸蟹提货卡模板</h1>
+        <p class="subtitle">专业大闸蟹提货卡设计与展示系统</p>
     </div>
     
     <!-- 缩放提示 -->
     <div class="zoom-hint">
-        提示：您可以使用 Ctrl+加号/减号 或双指缩放来调整页面大小，布局将保持不变
+        提示：此页面使用固定3列布局，在任何设备上都会显示每行3个图片
     </div>
     
     <!-- 主内容区 -->
     <div class="main-container">
-        <!-- 图片展示容器 -->
-        <div class="container" id="imageContainer">
-            <!-- 图片项将由JavaScript动态生成 -->
+        <!-- 横向滚动包装器 -->
+        <div class="horizontal-scroll-wrapper">
+            <!-- 图片展示容器 -->
+            <div class="container" id="imageContainer">
+                <!-- 图片项将由JavaScript动态生成 -->
+            </div>
         </div>
         
         <!-- 分页控件 -->
@@ -331,13 +334,12 @@
     
     <!-- 页脚 -->
     <div class="footer">
-        <p>大闸蟹图片展示系统 &copy; 2023 | 共500个图片容器</p>
+        <p>大闸蟹提货卡模板展示系统 &copy; 2023 | 共500个模板展示</p>
     </div>
 
     <script>
         // 配置常量
-        const IMAGES_PER_PAGE = 50; // 每页显示50张图片
-        const IMAGES_PER_ROW = 3;   // 每行3张图片
+        const IMAGES_PER_PAGE = 51; // 每页显示51张图片（3的倍数）
         const TOTAL_IMAGES = 500;   // 总共500张图片
         
         // 计算总页数
@@ -382,11 +384,22 @@
                 const img = document.createElement('img');
                 // 生成图片文件名，格式为0001.jpg、0002.jpg等
                 const fileName = i.toString().padStart(4, '0') + '.jpg';
-                // 设置图片路径（这里使用占位图，实际使用时替换为您的图片路径）
-                // 使用更高分辨率的占位图，确保在放大时清晰
-                img.src = `https://via.placeholder.com/600x800/ffcccc/333333?text=大闸蟹${i.toString().padStart(4, '0')}`;
-                img.alt = `大闸蟹图片 ${fileName}`;
-                img.loading = "lazy"; // 懒加载
+                
+                // 使用可靠的图片链接 - 实际使用时替换为您的图片路径
+                // 这里使用占位图片，您需要替换为 images/${fileName}
+                const imageUrls = [
+                    'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=400&h=550&fit=crop',
+                    'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=400&h=550&fit=crop',
+                    'https://images.unsplash.com/photo-1567177662156-2a4b284b4be6?w=400&h=550&fit=crop',
+                    'https://images.unsplash.com/photo-1597848212624-e9f9120b1df4?w=400&h=550&fit=crop'
+                ];
+                
+                // 循环使用图片URL
+                const imgUrl = imageUrls[i % imageUrls.length];
+                
+                img.src = imgUrl;
+                img.alt = `大闸蟹提货卡模板 ${fileName}`;
+                img.loading = "lazy";
                 
                 // 添加加载样式
                 img.classList.add('loading');
@@ -415,14 +428,14 @@
                         modal.style.display = 'flex';
                         modalImage.src = img.src;
                         modalImage.alt = img.alt;
-                        document.body.style.overflow = 'hidden'; // 防止背景滚动
+                        document.body.style.overflow = 'hidden';
                     }
                 };
                 
                 // 创建序号元素
                 const index = document.createElement('div');
                 index.className = 'image-index';
-                index.textContent = i.toString().padStart(4, '0'); // 显示序号，不带.jpg
+                index.textContent = i.toString().padStart(4, '0');
                 
                 // 组装元素
                 imgContainer.appendChild(img);
@@ -444,7 +457,7 @@
         // 关闭模态框
         function closeModalFunc() {
             modal.style.display = 'none';
-            document.body.style.overflow = ''; // 恢复背景滚动
+            document.body.style.overflow = '';
         }
         
         closeModal.onclick = closeModalFunc;
@@ -471,7 +484,6 @@
             if (currentPage > 1) {
                 currentPage--;
                 generateImageItems(currentPage);
-                // 滚动到顶部
                 window.scrollTo(0, 0);
             }
         });
@@ -481,7 +493,6 @@
             if (currentPage < TOTAL_PAGES) {
                 currentPage++;
                 generateImageItems(currentPage);
-                // 滚动到顶部
                 window.scrollTo(0, 0);
             }
         });
