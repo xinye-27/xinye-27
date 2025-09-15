@@ -57,7 +57,6 @@
             border-radius: 15px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
             margin-bottom: 30px;
-            overflow-x: auto; /* 添加水平滚动 */
         }
         
         /* 图片容器布局 - 固定3列 */
@@ -66,7 +65,6 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-bottom: 40px;
-            min-width: 1200px; /* 确保最小宽度，防止在小屏幕上换行 */
         }
         
         /* 单个图片项样式 */
@@ -77,6 +75,7 @@
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid #eee;
+            width: 100%;
         }
         
         .image-item:hover {
@@ -261,6 +260,51 @@
         @keyframes loading {
             from { background-position: 200% 0; }
             to { background-position: -200% 0; }
+        }
+        
+        /* 手机端适配 - 确保3列布局 */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header, .main-container, .footer {
+                padding: 15px;
+                border-radius: 10px;
+            }
+            
+            .title {
+                font-size: 32px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .container {
+                gap: 15px;
+            }
+            
+            .image-container {
+                height: 380px;
+                padding: 15px;
+            }
+            
+            .image-index {
+                padding: 12px 0;
+                font-size: 16px;
+            }
+            
+            .page-btn {
+                padding: 10px 20px;
+                font-size: 16px;
+                min-width: 100px;
+            }
+            
+            .page-info {
+                font-size: 16px;
+                padding: 8px 20px;
+            }
         }
     </style>
 </head>
