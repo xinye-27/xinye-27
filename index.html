@@ -387,12 +387,8 @@
                 
                 // 使用可靠的图片链接 - 实际使用时替换为您的图片路径
                 // 这里使用占位图片，您需要替换为 images/${fileName}
-                const imageUrls = [
-                    'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=400&h=550&fit=crop',
-                    'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=400&h=550&fit=crop',
-                    'https://images.unsplash.com/photo-1567177662156-2a4b284b4be6?w=400&h=550&fit=crop',
-                    'https://images.unsplash.com/photo-1597848212624-e9f9120b1df4?w=400&h=550&fit=crop'
-                ];
+                // 使用您自己的图片
+                img.src = `images/${fileName}`;
                 
                 // 循环使用图片URL
                 const imgUrl = imageUrls[i % imageUrls.length];
