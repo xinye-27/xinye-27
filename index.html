@@ -17,8 +17,6 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
             padding: 20px;
             min-height: 100vh;
-            width: 100%;
-            overflow-x: auto;
         }
         
         /* 标题样式 */
@@ -262,60 +260,20 @@
             from { background-position: 200% 0; }
             to { background-position: -200% 0; }
         }
-        
-        /* 缩放提示 */
-        .zoom-hint {
-            text-align: center;
-            color: #666;
-            font-size: 16px;
-            margin: 15px 0 30px;
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        }
-        
-        /* 强制横向滚动的小屏幕设备 */
-        .horizontal-scroll-wrapper {
-            width: 100%;
-            overflow-x: auto;
-        }
-        
-        /* 小屏幕设备上的网格容器 */
-        @media (max-width: 1400px) {
-            .container {
-                width: 1320px; /* 固定宽度确保3列布局 */
-            }
-            
-            .main-container {
-                overflow-x: auto;
-            }
-        }
     </style>
 </head>
 <body>
     <!-- 标题区域 -->
     <div class="header">
         <h1 class="title">大闸蟹提货卡模板</h1>
-        <p class="subtitle">专业大闸蟹提货卡设计与展示系统</p>
-    </div>
-    
-    <!-- 缩放提示 -->
-    <div class="zoom-hint">
-        提示：此页面使用固定3列布局，在任何设备上都会显示每行3个图片
+        <p class="subtitle">专业大闸蟹提货卡定制厂家</p>
     </div>
     
     <!-- 主内容区 -->
     <div class="main-container">
-        <!-- 横向滚动包装器 -->
-        <div class="horizontal-scroll-wrapper">
-            <!-- 图片展示容器 -->
-            <div class="container" id="imageContainer">
-                <!-- 图片项将由JavaScript动态生成 -->
-            </div>
+        <!-- 图片展示容器 -->
+        <div class="container" id="imageContainer">
+            <!-- 图片项将由JavaScript动态生成 -->
         </div>
         
         <!-- 分页控件 -->
@@ -385,15 +343,8 @@
                 // 生成图片文件名，格式为0001.jpg、0002.jpg等
                 const fileName = i.toString().padStart(4, '0') + '.jpg';
                 
-                // 使用可靠的图片链接 - 实际使用时替换为您的图片路径
-                // 这里使用占位图片，您需要替换为 images/${fileName}
-                // 使用您自己的图片
+                // 使用您自己的图片路径
                 img.src = `images/${fileName}`;
-                
-                // 循环使用图片URL
-                const imgUrl = imageUrls[i % imageUrls.length];
-                
-                img.src = imgUrl;
                 img.alt = `大闸蟹提货卡模板 ${fileName}`;
                 img.loading = "lazy";
                 
@@ -492,16 +443,6 @@
                 window.scrollTo(0, 0);
             }
         });
-        
-        // 处理移动设备上的触摸事件，防止意外缩放
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
     </script>
 </body>
 </html>
