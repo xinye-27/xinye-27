@@ -178,7 +178,7 @@
             display: flex;
             align-items: center;
             margin: 0 20px;
-            color: #666;
+            color: 666;
             font-size: 16px;
             background: #f5f5f5;
             padding: 8px 20px;
@@ -308,6 +308,15 @@
             /* 确保网格布局在手机上也是3列 */
             .container {
                 grid-template-columns: repeat(3, 1fr);
+            }
+            
+            /* 添加水平滚动以确保3列布局在手机上完全显示 */
+            .main-container {
+                overflow-x: auto;
+            }
+            
+            .container {
+                min-width: 1000px; /* 确保最小宽度，防止在小屏幕上换行 */
             }
         }
     </style>
